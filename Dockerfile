@@ -6,19 +6,19 @@ ARG LC_ALL=C
 ARG DEBIAN_FRONTEND=noninteractive
 
 # modify source.list
+RUN apt update
 RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list \
     && sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
 
 # install systemd and ssh
-RUN apt-get update \
-    && apt-get install -y systemd ubuntu-minimal \
-    && apt-get clean \
+RUN apt update \
+    && apt install -y systemd ubuntu-minimal \
+    && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # remove unnecessary units
 RUN rm -f /lib/systemd/system/sysinit.target.wants/*.mount \
     && systemctl disable networkd-dispatcher.service
-RUN apt update
 RUN DEBIAN_FRONTEND=noninteractive apt install firefox-esr mate-system-monitor  git lxde tightvncserver wget   -y
 RUN wget https://github.com/novnc/noVNC/archive/refs/tags/v1.2.0.tar.gz
 RUN tar -xvf v1.2.0.tar.gz
