@@ -12,7 +12,7 @@ RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list \
 
 # install systemd and ssh
 RUN apt update \
-    && apt install -y systemd ubuntu-minimal \
+    && apt install -y systemd \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
