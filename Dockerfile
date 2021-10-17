@@ -4,12 +4,6 @@ FROM debian
 ENV container docker
 ARG LC_ALL=C
 ARG DEBIAN_FRONTEND=noninteractive
-
-# modify source.list
-RUN apt update
-RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list \
-    && sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
-
 # install systemd and ssh
 RUN apt update \
     && apt install -y systemd \
