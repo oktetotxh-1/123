@@ -2,7 +2,7 @@ services:
   mooncake:
     shm_size: 2.6gb
     tty: true
-    build: ./build/bionic
+    build: . 
     restart: on-failure
     network_mode: bridge
     mem_limit: 1G
